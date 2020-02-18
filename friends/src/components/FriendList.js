@@ -1,18 +1,20 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import FriendCard from './FriendCard';
 import { axiosWithAuth } from '../utils/AxiosWithAuth';
 import { useForm } from '../utils/useForm';
 
-const FriendList = () => {
+import FriendContext from '../contexts/FriendContext'
 
-    const [friends, setFriends] = useState();
+const FriendList = props => {
+
+    const {friendList, setFriendList} = useContext(FriendContext);
     
     useEffect(() => {
         axiosWithAuth()
             .get('/friends')
             .then(res => {
                 console.log(res);
-                setFriends(res.data);
+                setFriendList(res.data);
             })
             .catch(err => console.log('AxiosWithAuth Error:', err));
     }, []);
@@ -24,7 +26,7 @@ const FriendList = () => {
             .post('/friends', values)
             .then(res => {
                 console.log(res);
-                setFriends(res.data);
+                setFriendList(res.data);
             })
             .catch(err => console.log('AxiosWithAuth Error:', err));
     };
@@ -47,11 +49,11 @@ const FriendList = () => {
                 <button type='submit'>Add</button>
             </form>
 
-            {!friends ? (
+            {!friendList ? (
                 <h1>Loading List</h1>
             ) : (
                 <section className='card-container'>
-                    {friends.map((friend) => {
+                    {friendList.map((friend, index) => {
                         return <FriendCard key={friend.id} friend={friend} />
                     })}
                 </section>
