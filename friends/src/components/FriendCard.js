@@ -1,4 +1,5 @@
 import React from 'react';
+import { axiosWithAuth } from '../utils/AxiosWithAuth';
 
 const FriendCard = ({ friend }) => {
 
@@ -6,12 +7,29 @@ const FriendCard = ({ friend }) => {
     const handlePut = e => {
         e.preventDefault();
         console.log('Look! Im handling the [PUT] for Friend:::- ', friend.id);
+
+        // axios     
+        //     .put(`http://somecoolurl.com/${couldHaveDynamicId}`, updatedData)
+        //     .then(response => {
+        //         response is the response we get back from the server
+        //         Whatever resource was changed should be reflected in our client
+        //     })
+        //     .catch(err => {
+        //         if something goes wrong, we handle any errors here
+        //     });
     }
     
     // Deleting::
-    const handleDelete = e => {
+    const handleRemove = e => {
         e.preventDefault();
         console.log('Look! Im handling the [DELETE] for Friend:::- ', friend.id);
+
+        axiosWithAuth()     
+            .delete(`/friends/${friend.id}`)
+            .then(res => {
+                console.log('DELETED RESPONSE: ', res);
+            })
+            .catch(err => console.log('AxiosWithAuth Error:', err));
     }
 
     return (
@@ -23,7 +41,7 @@ const FriendCard = ({ friend }) => {
             </div>
             <div className='card-buttons'>
                 <button className='button-update' onClick={handlePut}>Update</button>
-                <button className='button-remove' onClick={handleDelete}>Remove</button>
+                <button className='button-remove' onClick={handleRemove}>Remove</button>
             </div>
         </div>
     );

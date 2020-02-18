@@ -19,6 +19,14 @@ const FriendList = () => {
 
     const submitCallback = () => {
         console.log(values);
+
+        axiosWithAuth()
+            .post('/friends', values)
+            .then(res => {
+                console.log(res);
+                setFriends(res.data);
+            })
+            .catch(err => console.log('AxiosWithAuth Error:', err));
     };
 
     const [values, handleChanges, handleSubmit] = useForm({
