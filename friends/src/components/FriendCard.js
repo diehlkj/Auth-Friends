@@ -1,6 +1,19 @@
 import React from 'react';
 
 const FriendCard = ({ friend }) => {
+
+    // Editing::
+    const handlePut = e => {
+        e.preventDefault();
+        console.log('Look! Im handling the [PUT] for Friend:::- ', friend.id);
+    }
+    
+    // Deleting::
+    const handleDelete = e => {
+        e.preventDefault();
+        console.log('Look! Im handling the [DELETE] for Friend:::- ', friend.id);
+    }
+
     return (
         <div className='card'>
             <div className='card-main'>
@@ -9,8 +22,8 @@ const FriendCard = ({ friend }) => {
                 <p>{friend.email}</p>
             </div>
             <div className='card-buttons'>
-                <button className='button-update'>Update</button>
-                <button className='button-remove'>Remove</button>
+                <button className='button-update' onClick={handlePut}>Update</button>
+                <button className='button-remove' onClick={handleDelete}>Remove</button>
             </div>
         </div>
     );
