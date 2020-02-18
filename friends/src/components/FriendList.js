@@ -43,9 +43,9 @@ const FriendList = props => {
         <div className='friend-list'>
 
             <form onSubmit={handleSubmit}>
-                <input type='text' name='name' placeholder='Name' onChange={handleChanges} value={values.name} />
-                <input type='number' name='age' placeholder='Age' onChange={handleChanges} value={values.age} />
-                <input type='email' name='email' placeholder='Email Address' onChange={handleChanges} value={values.email} />
+                <input required type='text' name='name' placeholder='Name' onChange={handleChanges} value={values.name} />
+                <input required type='number' name='age' placeholder='Age' onChange={handleChanges} value={values.age} />
+                <input required type='email' name='email' placeholder='Email Address' onChange={handleChanges} value={values.email} />
                 <button type='submit'>Add</button>
             </form>
 

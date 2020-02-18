@@ -29,8 +29,8 @@ const Login = () => {
     return (
         <div className='login'>
             <form onSubmit={handleSubmit}>
-                <input type='text' name='username' placeholder='Username' onChange={handleChanges} value={values.username} />
-                <input type='password' name='password' placeholder='Password' onChange={handleChanges} value={values.password} />
+                <input required type='text' name='username' placeholder='Username' onChange={handleChanges} value={values.username} />
+                <input required type='password' name='password' placeholder='Password' onChange={handleChanges} value={values.password} />
                 <button type='submit'>Login</button>
             </form>
         </div>
